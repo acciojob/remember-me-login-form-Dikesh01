@@ -6,12 +6,12 @@ if(localStorage.getItem('username') && localStorage.getItem('password')){
 	existingElement.textContent = 'Login as existing user';
 	document.body.appendChild(existingElement);
 
-	existingElement.addEventListener('click', function(saveDetail){
+	existingElement.addEventListener('click', saveDetail);
+	
+	function saveDetail(){
 		let existingName = localStorage.getItem('username');
 		alert(`Logged in as ${existingName}`);
-	});
-	
-	
+	}
 }
 
 
