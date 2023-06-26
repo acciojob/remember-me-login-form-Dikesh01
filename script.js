@@ -1,5 +1,15 @@
 //your JS code here. If required.
 
+if(localStorage.getItem('username') && localStorage.getItem('password')){
+	var existingElement = document.createElement('button');
+	existingElement.id = 'existing';
+	existingElement.textContent = 'Login as existing user';
+
+	let existingName = localStorage.getItem('username');
+
+	alert(`Logged in as ${existingName}`);
+}
+
 
 const submitBtn = document.getElementById('submit');
 
