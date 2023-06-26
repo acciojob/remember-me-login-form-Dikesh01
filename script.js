@@ -1,56 +1,29 @@
-//your JS code here. If required.
+   if (localStorage.getItem('username') && localStorage.getItem('password')) {
+      var existingButton = document.createElement('button');
+      existingButton.id = 'existing';
+      existingButton.textContent = 'Login as existing user';
+      document.body.appendChild(existingButton);
 
-if(localStorage.getItem('username') && localStorage.getItem('password')){
-	var existingElement = document.createElement('button');
-	existingElement.id = 'existing';
-	existingElement.textContent = 'Login as existing user';
-	document.body.appendChild(existingElement);
+      existingButton.addEventListener('click', function() {
+        var savedUsername = localStorage.getItem('username');
+        alert('Logged in as ' + savedUsername);
+      });
+    }
 
-	existingElement.addEventListener('click', saveDetail);
-	
-	function saveDetail(){
-		let existingName = localStorage.getItem('username');
-		alert(`Logged in as ${existingName}`);
-	}
-}
+    document.getElementById('submit').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent form submission
 
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var rememberMe = document.getElementById('checkbox').checked;
 
-const submitBtn = document.getElementById('submit');
+      if (rememberMe) {
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+      } else {
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+      }
 
-submitBtn.addEventListener('click', getDetails)
-
-function getDetails(event){
-	event.preventDefault();
-	const userName = document.getElementById('username').value;
-	const password = document.getElementById('password').value;
-	const remember = document.getElementById('checkbox').checked;
-
-	if(remember){
-		localStorage.setItem('username', userName);
-		localStorage.setItem('password', password);
-	}
-	else{
-		localStorage.removeItem('username');
-		localStorage.removeItem('password');
-	}
-	
-	alert(`Logged in as ${ userName}`);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      alert('Logged in as ' + username);
+    });
